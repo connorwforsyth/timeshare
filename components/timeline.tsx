@@ -3,7 +3,8 @@ import { motion } from "framer-motion";
 import { TimePickerAction, TimePickerState } from "@/types/timetypes";
 import { addDays, eachDayOfInterval, subDays } from "date-fns";
 import TimeRangeSelector from "./RangeSelector";
-import {
+import { timePickerConstants } from "@/types/timetypes";
+const {
 	HOURS,
 	MINUTES_PER_HOUR,
 	TOTAL_MINUTES,
@@ -12,7 +13,7 @@ import {
 	DAY_WIDTH,
 	SCROLL_AMOUNT_HOURS,
 	SCROLL_AMOUNT_PX,
-} from "@/types/timetypes";
+} = timePickerConstants;
 
 const Timeline: React.FC<{
 	state: TimePickerState;

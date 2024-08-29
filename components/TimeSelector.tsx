@@ -7,6 +7,10 @@ import Timeline from "./timeline";
 import {
 	TimePickerAction,
 	TimePickerState,
+	timePickerConstants,
+} from "@/types/timetypes";
+
+const {
 	HOURS,
 	MINUTES_PER_HOUR,
 	TOTAL_MINUTES,
@@ -15,7 +19,7 @@ import {
 	DAY_WIDTH,
 	SCROLL_AMOUNT_HOURS,
 	SCROLL_AMOUNT_PX,
-} from "@/types/timetypes";
+} = timePickerConstants;
 import {
 	Popover,
 	PopoverContent,
@@ -34,15 +38,6 @@ import {
 } from "date-fns";
 import { CalendarIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { motion, useAnimation } from "framer-motion";
-
-// Update TimePickerState
-interface TimePickerState {
-	dateRange: Date[];
-	startTime: number | null;
-	endTime: number | null;
-	containerPosition: number;
-	focusedDate: Date; // Add this line
-}
 
 // Update reducer
 const timePickerReducer = (
