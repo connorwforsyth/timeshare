@@ -5,9 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  '-':
-    specifier: ^0.0.1
-    version: 0.0.1
+  '@heroicons/react':
+    specifier: ^2.1.5
+    version: 2.1.5(react@18.3.1)
   '@radix-ui/react-avatar':
     specifier: ^1.1.0
     version: 1.1.0(@types/react-dom@18.3.0)(@types/react@18.3.4)(react-dom@18.3.1)(react@18.3.1)
@@ -20,9 +20,6 @@ dependencies:
   '@radix-ui/react-slot':
     specifier: ^1.1.0
     version: 1.1.0(@types/react@18.3.4)(react@18.3.1)
-  D:
-    specifier: ^1.0.0
-    version: 1.0.0
   class-variance-authority:
     specifier: ^0.7.0
     version: 0.7.0
@@ -44,12 +41,6 @@ dependencies:
   next:
     specifier: 14.2.7
     version: 14.2.7(react-dom@18.3.1)(react@18.3.1)
-  prettier:
-    specifier: ^3.3.3
-    version: 3.3.3
-  prettier-plugin-tailwindcss:
-    specifier: ^0.6.6
-    version: 0.6.6(prettier@3.3.3)
   react:
     specifier: ^18.3.1
     version: 18.3.1
@@ -59,6 +50,9 @@ dependencies:
   react-dom:
     specifier: ^18
     version: 18.3.1(react@18.3.1)
+  react-use-measure:
+    specifier: ^2.1.1
+    version: 2.1.1(react-dom@18.3.1)(react@18.3.1)
   tailwind-merge:
     specifier: ^2.5.2
     version: 2.5.2
@@ -85,6 +79,12 @@ devDependencies:
   postcss:
     specifier: ^8
     version: 8.4.41
+  prettier:
+    specifier: ^3.3.3
+    version: 3.3.3
+  prettier-plugin-tailwindcss:
+    specifier: ^0.6.6
+    version: 0.6.6(prettier@3.3.3)
   tailwindcss:
     specifier: ^3.4.1
     version: 3.4.10
@@ -93,10 +93,6 @@ devDependencies:
     version: 5.5.4
 
 packages:
-
-  /-@0.0.1:
-    resolution: {integrity: sha512-3HfneK3DGAm05fpyj20sT3apkNcvPpCuccOThOPdzz8sY7GgQGe0l93XH9bt+YzibcTIgUAIMoyVJI740RtgyQ==}
-    dev: false
 
   /@alloc/quick-lru@5.2.0:
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
@@ -165,6 +161,14 @@ packages:
 
   /@floating-ui/utils@0.2.7:
     resolution: {integrity: sha512-X8R8Oj771YRl/w+c1HqAC1szL8zWQRwFvgDwT129k9ACdBoud/+/rX9V0qiMl6LWUdP9voC2nDVZYPMQQsb6eA==}
+    dev: false
+
+  /@heroicons/react@2.1.5(react@18.3.1):
+    resolution: {integrity: sha512-FuzFN+BsHa+7OxbvAERtgBTNeZpUjgM/MIizfVkSCL2/edriN0Hx/DWRCR//aPYwO5QX/YlgLGXk+E3PcfZwjA==}
+    peerDependencies:
+      react: '>= 16'
+    dependencies:
+      react: 18.3.1
     dev: false
 
   /@humanwhocodes/config-array@0.11.14:
@@ -936,11 +940,6 @@ packages:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
     dev: true
 
-  /D@1.0.0:
-    resolution: {integrity: sha512-nQvrCBu7K2pSSEtIM0EEF03FVjcczCXInMt3moLNFbjlWx6bZrX72uT6/1uAXDbnzGUAx9gTyDiQ+vrFi663oA==}
-    deprecated: Package no longer supported. Contact support@npmjs.com for more info.
-    dev: false
-
   /acorn-jsx@5.3.2(acorn@8.12.1):
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
@@ -1300,6 +1299,10 @@ packages:
 
   /date-fns@3.6.0:
     resolution: {integrity: sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==}
+    dev: false
+
+  /debounce@1.2.1:
+    resolution: {integrity: sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug==}
     dev: false
 
   /debug@3.2.7:
@@ -2892,13 +2895,13 @@ packages:
         optional: true
     dependencies:
       prettier: 3.3.3
-    dev: false
+    dev: true
 
   /prettier@3.3.3:
     resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
     engines: {node: '>=14'}
     hasBin: true
-    dev: false
+    dev: true
 
   /prop-types@15.8.1:
     resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
@@ -2990,6 +2993,17 @@ packages:
       invariant: 2.2.4
       react: 18.3.1
       tslib: 2.7.0
+    dev: false
+
+  /react-use-measure@2.1.1(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-nocZhN26cproIiIduswYpV5y5lQpSQS1y/4KuvUCjSKmw7ZWIS/+g3aFnX3WdBkyuGUtTLif3UTqnLLhbDoQig==}
+    peerDependencies:
+      react: '>=16.13'
+      react-dom: '>=16.13'
+    dependencies:
+      debounce: 1.2.1
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
     dev: false
 
   /react@18.3.1:
