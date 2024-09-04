@@ -22,12 +22,17 @@ import {
 	isEqual,
 	endOfDay,
 } from "date-fns";
-import { motion, AnimatePresence } from "framer-motion";
+import {
+	motion,
+	AnimatePresence,
+	MotionConfig,
+	LayoutGroup,
+} from "framer-motion";
 
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { start } from "repl";
 
-const transition = { type: "spring", stiffness: 300, damping: 30 };
+const transition = { duration: 5 };
 const hourInterval = 8;
 const stepChange = 1;
 
@@ -55,66 +60,60 @@ export default function ShareTime() {
 	}, [currentTime]);
 
 	return (
-		<div className="flex flex-col gap-4">
-			<AnimatePresence
-				mode="popLayout"
-				custom={direction}
-				initial={false}
-				onExitComplete={() => setIsAnimating(false)}
-			>
-				<div className="flex items-center justify-between">
-					<p>{format(day, "EEE d MMM yyyy, h a")}</p>
-					<div className="flex">
-						<motion.button
-							className="relative z-10 flex rounded-full bg-slate-300 p-2"
-							onClick={previous}
-						>
-							<ChevronLeftIcon className="h-4 w-4" />
-						</motion.button>
-						<motion.button
-							className="relative z-10 flex rounded-full bg-slate-300 p-2"
-							onClick={next}
-						>
-							<ChevronRightIcon className="h-4 w-4" />
-						</motion.button>
-					</div>
-				</div>
-				<motion.div
-					key={currentTime.getTime()}
-					variants={variants}
+		<MotionConfig transition={transition}>
+			<div className="flex flex-col gap-4">
+				<AnimatePresence
+					mode="popLayout"
 					custom={direction}
-					initial="enter"
-					animate="middle"
-					exit="exit"
+					initial={false}
+					onExitComplete={() => setIsAnimating(false)}
 				>
-					<div className="flex h-36 justify-between overflow-hidden rounded-lg border bg-neutral-900">
-						{mins.map((mins, idx) => (
-							<MinsBar
-								key={format(mins, "yyyy-MM-dd HH:mm:ss")}
-								index={idx}
-								mins={mins}
-							/>
-						))}
+					<div className="flex items-center justify-between">
+						<p>{format(day, "EEE d MMM yyyy, h a")}</p>
+						<div className="flex">
+							<motion.button
+								className="relative z-10 flex rounded-full bg-slate-300 p-2"
+								onClick={previous}
+							>
+								<ChevronLeftIcon className="h-4 w-4" />
+							</motion.button>
+							<motion.button
+								className="relative z-10 flex rounded-full bg-slate-300 p-2"
+								onClick={next}
+							>
+								<ChevronRightIcon className="h-4 w-4" />
+							</motion.button>
+						</div>
 					</div>
-				</motion.div>
-			</AnimatePresence>
-		</div>
+
+					<motion.div className="flex h-36 justify-between overflow-hidden rounded-lg border bg-neutral-900">
+						{mins.map((mins, idx) => (
+							<motion.div
+								key={format(mins, "yyyy-MM-dd HH:mm:ss")}
+								variants={variants}
+								custom={direction}
+								initial="enter"
+								animate="middle"
+								exit="exit"
+							>
+								<MinsBar index={idx} mins={mins} />
+							</motion.div>
+						))}
+					</motion.div>
+				</AnimatePresence>
+			</div>
+		</MotionConfig>
 	);
 }
 
 let variants = {
 	enter: (direction: number) => {
-		return { x: `${100 * direction}px`, opacity: 0 };
+		return { x: `${100 * direction}px` };
 	},
-	middle: { x: "0px", opacity: 1 },
+	middle: { x: "0px" },
 	exit: (direction: number) => {
-		return { x: `${-100 * direction}px`, opacity: 0 };
+		return { x: `${-100 * direction}px` };
 	},
-};
-
-type MinsBarProps = {
-	mins: Date;
-	index: number;
 };
 
 function MinsBar({ mins, index }: MinsBarProps) {
@@ -136,3 +135,8 @@ function MinsBar({ mins, index }: MinsBarProps) {
 		</div>
 	);
 }
+
+type MinsBarProps = {
+	mins: Date;
+	index: number;
+};
